@@ -63,23 +63,3 @@ void loop() {
 
 
 
-pip3 install adafruit-circuitpython-lsm303dlh_mag
-sudo apt-get install -y i2c-tools
-sudo pip3 install adafruit-blinka
-sudo usermod -aG i2c $(whoami)
-sudo reboot
-import time
-import board
-import busio
-import adafruit_lsm303dlh_mag
-
-# Initialize I2C bus and sensor.
-i2c = busio.I2C(board.SCL, board.SDA)
-mag_sensor = adafruit_lsm303dlh_mag.LSM303DLH_Mag(i2c)
-
-while True:
-    mag_x, mag_y, mag_z = mag_sensor.magnetic
-
-    print('Magnetometer (gauss): ({0}, {1}, {2})'.format(mag_x, mag_y, mag_z))
-    time.sleep(1)
-
